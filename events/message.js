@@ -11,6 +11,36 @@ module.exports = async (client, message) => {
   // If there is no guild, get default conf (DMs)
   const settings = message.settings = client.getSettings(message.guild);
 
+
+  if (message.content.split(" ")[0].toLowerCase() == "good") {
+
+    if (message.mentions.members) {
+      let target = message.mentions.members.first();
+
+      if (!client.stats.get(target.id)) {
+        client.stats.set(target.id, 0);
+      }
+      client.stats.set(target.id, client.stats.get(target.id) + 1);
+      message.react("❤️")
+      client.logger.log(`Added point to ${target.displayName}`, "log");
+    }
+  }
+
+  if (message.content.split(" ")[0].toLowerCase() == "bad") {
+
+    if (message.mentions.members) {
+      let target = message.mentions.members.first();
+
+      if (!client.stats.get(target.id)) {
+        client.stats.set(target.id, 0);
+      }
+      client.stats.set(target.id, client.stats.get(target.id) - 1);
+      message.react("💔");
+      client.logger.log(`Removed point from ${target.displayName}`, "log");
+    }
+  }
+
+
   // Checks if the bot was mentioned, with no message after it, returns the prefix.
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
   if (message.content.match(prefixMention)) {

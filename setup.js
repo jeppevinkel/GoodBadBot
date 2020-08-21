@@ -8,7 +8,7 @@ const defaultSettings = {
   "prefix": "~",
   "modLogChannel": "mod-log",
   "modRole": "Moderator",
-  "systemNotice": "true",
+  "systemNotice": "true"
 };
 
 const settings = new Enmap({
