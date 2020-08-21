@@ -11,10 +11,12 @@ module.exports = async (client, message) => {
   // If there is no guild, get default conf (DMs)
   const settings = message.settings = client.getSettings(message.guild);
 
+  const goodWords = new Array("good", "thanks", "thank");
+  const badWords = new Array("bad", "stfu");
 
-  if (message.content.split(" ")[0].toLowerCase() == "good") {
+  if (goodWords.includes(message.content.split(" ")[0].toLowerCase())) {
 
-    if (message.mentions.members) {
+    if (message.mentions.members.size) {
       let target = message.mentions.members.first();
 
       if (!client.stats.get(target.id)) {
@@ -26,9 +28,9 @@ module.exports = async (client, message) => {
     }
   }
 
-  if (message.content.split(" ")[0].toLowerCase() == "bad") {
+  if (badWords.includes(message.content.split(" ")[0].toLowerCase())) {
 
-    if (message.mentions.members) {
+    if (message.mentions.members.size) {
       let target = message.mentions.members.first();
 
       if (!client.stats.get(target.id)) {
