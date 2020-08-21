@@ -7,9 +7,19 @@ exports.run = (client, message, args, level) => {
     }
 
     let score = client.stats.get(message.member.id);
+    let color = '';
+    if (score < 0) {
+      color = '#FE6B64';
+    }
+    else if (score > 0) {
+      color = '#77DD77';
+    }
+    else {
+      color = '#779ECB';
+    }
 
     let embed = new Discord.MessageEmbed()
-      .setColor('#0099ff')
+      .setColor(color)
       .setAuthor(message.member.displayName, message.member.user.displayAvatarURL())
       .addField('Love', score)
       .setTimestamp();
@@ -21,9 +31,19 @@ exports.run = (client, message, args, level) => {
     }
 
     let score = client.stats.get(message.mentions.members.first().id);
+    let color = '';
+    if (score < 0) {
+      color = '#FE6B64';
+    }
+    else if (score > 0) {
+      color = '#77DD77';
+    }
+    else {
+      color = '#779ECB';
+    }
 
     let embed = new Discord.MessageEmbed()
-      .setColor('#0099ff')
+      .setColor(color)
       .setAuthor(message.mentions.members.first().displayName, message.mentions.members.first().user.displayAvatarURL())
       .addField('Love', score)
       .setTimestamp();
