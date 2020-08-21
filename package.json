@@ -1,0 +1,22 @@
+{
+  "name": "good-bat-bot",
+  "version": "1.0.0",
+  "description": "A bot that keeps track of good vs bad status on discord",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeppevinkel/GoodBadBot.git"
+  },
+  "author": "Jeppevinkel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeppevinkel/GoodBadBot/issues"
+  },
+  "homepage": "https://github.com/jeppevinkel/GoodBadBot#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}
