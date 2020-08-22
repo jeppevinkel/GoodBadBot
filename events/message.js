@@ -16,7 +16,7 @@ module.exports = async (client, message) => {
 
   if (goodWords.includes(message.content.split(" ")[0].toLowerCase())) {
 
-    if (message.mentions.members.size) {
+    if (message.mentions.members.size && message.mentions.members.first() != message.member) {
       let target = message.mentions.members.first();
 
       if (!client.stats.get(target.id)) {
@@ -30,7 +30,7 @@ module.exports = async (client, message) => {
 
   if (badWords.includes(message.content.split(" ")[0].toLowerCase())) {
 
-    if (message.mentions.members.size) {
+    if (message.mentions.members.size && message.mentions.members.first() != message.member) {
       let target = message.mentions.members.first();
 
       if (!client.stats.get(target.id)) {
