@@ -20,9 +20,18 @@ module.exports = async (client, message) => {
       let target = message.mentions.members.first();
 
       if (!client.stats.get(target.id)) {
-        client.stats.set(target.id, 0);
+        client.stats.set(target.id, {
+        	bad: 0,
+        	good: 0,
+        	user: target.id,
+        	name: target.displayName
+        });
       }
-      client.stats.set(target.id, client.stats.get(target.id) + 1);
+
+      let user = client.stats.get(target.id);
+      user.good++;
+      user.name = target.displayName;
+      client.stats.set(target.id, user);
       message.react("❤️")
       client.logger.log(`Added point to ${target.displayName}`, "log");
     }
@@ -34,9 +43,18 @@ module.exports = async (client, message) => {
       let target = message.mentions.members.first();
 
       if (!client.stats.get(target.id)) {
-        client.stats.set(target.id, 0);
+        client.stats.set(target.id, {
+        	bad: 0,
+        	good: 0,
+        	user: target.id,
+        	name: target.displayName
+        });
       }
-      client.stats.set(target.id, client.stats.get(target.id) - 1);
+
+      let user = client.stats.get(target.id);
+      user.bad++;
+      user.name = target.displayName;
+      client.stats.set(target.id, user);
       message.react("💔");
       client.logger.log(`Removed point from ${target.displayName}`, "log");
     }

@@ -3,10 +3,17 @@ const Discord = require("discord.js");
 exports.run = (client, message, args, level) => {
   if (!message.mentions.members.size) {
     if (!client.stats.get(message.member.id)) {
-      client.stats.set(message.member.id, 0);
+      client.stats.set(message.member.id, {
+        bad: 0,
+        good: 0,
+        user: message.member.id,
+        name: message.member.displayName
+      });
     }
 
-    let score = client.stats.get(message.member.id);
+    let user = client.stats.get(message.member.id);
+
+    let score = user.good - user.bad;
     let color = '';
     if (score < 0) {
       color = '#FE6B64';
@@ -27,10 +34,17 @@ exports.run = (client, message, args, level) => {
     message.channel.send(embed);
   } else {
     if (!client.stats.get(message.mentions.members.first().id)) {
-      client.stats.set(message.mentions.members.first().id, 0);
+      client.stats.set(message.mentions.members.first().id, {
+        bad: 0,
+        good: 0,
+        user: message.mentions.members.first().id,
+        name: message.mentions.members.first().displayName
+      });
     }
 
-    let score = client.stats.get(message.mentions.members.first().id);
+    let user = client.stats.get(message.mentions.members.first().id);
+
+    let score = user.good - user.bad;
     let color = '';
     if (score < 0) {
       color = '#FE6B64';
